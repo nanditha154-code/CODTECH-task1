@@ -1,0 +1,71 @@
+# CODTECH-task1
+// Define pins for LEDs
+int led1 = 7;
+int led2 = 8;
+int led3 = 9;
+
+// Define pin for the button
+int buttonPin = 4;
+int buttonState = 0; // Variable to store the button state
+
+void setup() {
+  // Set LED pins as output
+  pinMode(led1, OUTPUT);
+  pinMode(led2, OUTPUT);
+  pinMode(led3, OUTPUT);
+
+  // Set button pin as input
+  pinMode(buttonPin, INPUT);
+}
+
+void loop() {
+  // Read the button state
+  buttonState = digitalRead(buttonPin);
+
+  // If the button is pressed
+  if (buttonState == HIGH) {
+    // Pattern 1: Sequential Blinking
+    digitalWrite(led1, HIGH); // Turn on LED 1
+    delay(1000); // Wait for 1 second
+    digitalWrite(led1, LOW); // Turn off LED 1
+
+    digitalWrite(led2, HIGH); // Turn on LED 2
+    delay(1000); // Wait for 1 second
+    digitalWrite(led2, LOW); // Turn off LED 2
+
+    digitalWrite(led3, HIGH); // Turn on LED 3
+    delay(1000); // Wait for 1 second
+    digitalWrite(led3, LOW); // Turn off LED 3
+
+    delay(2000); // Wait for 2 seconds before repeating the pattern
+
+    // Pattern 2: All LEDs ON and OFF
+    digitalWrite(led1, HIGH);
+    digitalWrite(led2, HIGH);
+    digitalWrite(led3, HIGH);
+    delay(3000); // Wait for 3 seconds
+    digitalWrite(led1, LOW);
+    digitalWrite(led2, LOW);
+    digitalWrite(led3, LOW);
+    delay(3000); // Wait for 3 seconds
+
+    // Pattern 3: Fast Blinking
+    for (int i = 0; i < 5; i++) { // Blink all LEDs 5 times
+      digitalWrite(led1, HIGH);
+      digitalWrite(led2, HIGH);
+      digitalWrite(led3, HIGH);
+      delay(500); // Wait for 0.5 seconds
+      digitalWrite(led1, LOW);
+      digitalWrite(led2, LOW);
+      digitalWrite(led3, LOW);
+      delay(500); // Wait for 0.5 seconds
+    }
+
+    delay(2000); // Wait for 2 seconds before repeating the sequence
+  } else {
+    // If the button is not pressed, turn off all LEDs
+    digitalWrite(led1, LOW);
+    digitalWrite(led2, LOW);
+    digitalWrite(led3, LOW);
+  }
+}
